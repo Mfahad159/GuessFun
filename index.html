@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Number Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Mystery Number</h1>
+            <p class="subtitle">Pick a number between 1 and 30</p>
+        </header>
+
+        <section class="game-section">
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <span class="stat-label">Attempts Left</span>
+                    <span class="stat-value" id="attempts">10</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Difficulty</span>
+                    <span class="stat-value difficulty-hard">Hard</span>
+                </div>
+            </div>
+
+            <div class="feedback-container">
+                <p class="feedback" id="feedback"></p>
+            </div>
+
+            <div class="input-section">
+                <input 
+                    type="number" 
+                    id="guessInput" 
+                    class="guess-input" 
+                    min="1" 
+                    max="30" 
+                    placeholder="Enter your guess..."
+                    autocomplete="off"
+                >
+                <button class="submit-btn" id="submitBtn">Submit Guess</button>
+            </div>
+
+            <div class="history-section">
+                <h3>Previous Guesses</h3>
+                <div class="history" id="history"></div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <button class="reset-btn" id="resetBtn">New Game</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
