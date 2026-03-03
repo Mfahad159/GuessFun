@@ -8,14 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-    <div id="canvas-container"></div>
+    <div id="canvas"></div>
     <div class="container">
         <h1>Guess the Number</h1>
-        <p>Pick 1-20, you have 10 attempts</p>
+        <p>Pick 1-20, you have 1 attempt</p>
         
         <div class="game">
             <div class="stats">
-                <span>Attempts: <strong id="attempts">10</strong></span>
                 <span id="feedback"></span>
             </div>
             
@@ -24,12 +23,11 @@
                 <button id="submitBtn">Guess</button>
             </div>
             
-            <div id="history"></div>
             <button id="resetBtn" class="reset">New Game</button>
         </div>
     </div>
 
-    <script src="three-viz.js"></script>
+    <script src="viz.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

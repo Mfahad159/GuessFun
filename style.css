@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-#canvas-container {
+#canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -59,7 +59,7 @@ body {
 
 .stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 15px;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -67,11 +67,7 @@ body {
     border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
-}
-
-.stats strong {
-    font-size: 20px;
-    font-weight: 700;
+    min-height: 30px;
 }
 
 #feedback {
@@ -139,9 +135,7 @@ button:disabled {
 }
 
 #history {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: none;
 }
 
 #history div {
