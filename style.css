@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #0a0e27;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -27,12 +27,14 @@ body {
 .container {
     width: 100%;
     max-width: 450px;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.93);
     border-radius: 16px;
     padding: 35px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+    backdrop-filter: blur(10px);
     position: relative;
     z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .container h1 {

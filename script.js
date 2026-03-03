@@ -13,7 +13,7 @@ const attempts = document.getElementById('attempts');
 const history = document.getElementById('history');
 
 function init() {
-    game.secret = Math.floor(Math.random() * 30) + 1;
+    game.secret = Math.floor(Math.random() * 20) + 1;
     game.attempts = 10;
     game.history = [];
     game.over = false;
@@ -32,8 +32,8 @@ function guess() {
     
     let num = parseInt(input.value);
     
-    if (!num || num < 1 || num > 30) {
-        show('Please enter 1-30', 'hint');
+    if (!num || num < 1 || num > 20) {
+        show('Please enter 1-20', 'hint');
         return;
     }
     
