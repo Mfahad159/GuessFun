@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guess Game</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game in HTML CSS & JavaScript</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="canvas"></div>
-    <div class="container">
-        <h1>Guess the Number</h1>
-        <p>Pick 1-20, you have 1 attempt</p>
-        
-        <div class="game">
-            <div class="stats">
-                <span id="feedback"></span>
-            </div>
-            
-            <div class="input-group">
-                <input type="number" id="guessInput" min="1" max="20" placeholder="Your guess..." autocomplete="off">
-                <button id="submitBtn">Guess</button>
-            </div>
-            
-            <button id="resetBtn" class="reset">New Game</button>
-        </div>
+  <div class="wrapper">
+    <header>Guess a number from 1 to 100</header>
+    <p class="guess"></p>
+    <div class="input-field">
+      <input type="number" />
+      <button>Check</button>
     </div>
+    <p>You have <span class="chances">10</span> chances</p>
+  </div>
 
-    <script src="viz.js"></script>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
