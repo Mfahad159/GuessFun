@@ -1,115 +1,83 @@
-// Game state
-let gameState = {
-    secretNumber: 0,
-    attemptsLeft: 10,
-    guessHistory: [],
-    gameOver: false
+let game = {
+    secret: 0,
+    attempts: 10,
+    history: [],
+    over: false
 };
 
-// DOM elements
-const guessInput = document.getElementById('guessInput');
-const submitBtn = document.getElementById('submitBtn');
-const resetBtn = document.getElementById('resetBtn');
-const feedbackEl = document.getElementById('feedback');
-const attemptsEl = document.getElementById('attempts');
-const historyEl = document.getElementById('history');
+const input = document.getElementById('guessInput');
+const submit = document.getElementById('submitBtn');
+const reset = document.getElementById('resetBtn');
+const feedback = document.getElementById('feedback');
+const attempts = document.getElementById('attempts');
+const history = document.getElementById('history');
 
-// Initialize game
-function initializeGame() {
-    gameState.secretNumber = Math.floor(Math.random() * 30) + 1;
-    gameState.attemptsLeft = 10;
-    gameState.guessHistory = [];
-    gameState.gameOver = false;
-    
-    attemptsEl.textContent = gameState.attemptsLeft;
-    feedbackEl.textContent = '';
-    feedbackEl.className = 'feedback';
-    historyEl.innerHTML = '';
-    guessInput.value = '';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Guess';
-    guessInput.focus();
+function init() {
+    game.secret = Math.floor(Math.random() * 30) + 1;
+    game.attempts = 10;
+    game.history = [];
+    game.over = false;
+    attempts.textContent = 10;
+    feedback.textContent = '';
+    feedback.className = '';
+    history.innerHTML = '';
+    input.value = '';
+    input.disabled = false;
+    submit.disabled = false;
+    input.focus();
 }
 
-// Process guess
-function processGuess(guess) {
-    if (gameState.gameOver) return;
+function guess() {
+    if (game.over) return;
     
-    // Validate input
-    if (!guess || isNaN(guess) || guess < 1 || guess > 30) {
-        showFeedback('Please enter a number between 1 and 30!', 'hint');
+    let num = parseInt(input.value);
+    
+    if (!num || num < 1 || num > 30) {
+        show('Please enter 1-30', 'hint');
         return;
     }
     
-    guess = parseInt(guess);
-    
-    // Check if already guessed
-    if (gameState.guessHistory.includes(guess)) {
-        showFeedback('You already guessed that number!', 'hint');
+    if (game.history.includes(num)) {
+        show('Already guessed that', 'hint');
         return;
     }
     
-    gameState.guessHistory.push(guess);
-    gameState.attemptsLeft--;
-    attemptsEl.textContent = gameState.attemptsLeft;
-    addToHistory(guess);
+    game.history.push(num);
+    game.attempts--;
+    attempts.textContent = game.attempts;
     
-    // Check result
-    if (guess === gameState.secretNumber) {
-        showFeedback(`🎉 Correct! It was ${gameState.secretNumber}! You won with ${gameState.attemptsLeft + 1} attempts!`, 'correct');
-        endGame();
-    } else if (gameState.attemptsLeft === 0) {
-        showFeedback(`Game Over! The number was ${gameState.secretNumber}.`, 'incorrect');
-        endGame();
-    } else if (guess < gameState.secretNumber) {
-        showFeedback(`Too low! ${gameState.attemptsLeft} attempts remaining.`, 'incorrect');
+    let guessEl = document.createElement('div');
+    guessEl.textContent = num;
+    history.appendChild(guessEl);
+    
+    if (num === game.secret) {
+        show(`Correct! It was ${game.secret}!`, 'correct');
+        end();
+    } else if (game.attempts === 0) {
+        show(`Game Over! Number was ${game.secret}`, 'incorrect');
+        end();
     } else {
-        showFeedback(`Too high! ${gameState.attemptsLeft} attempts remaining.`, 'incorrect');
+        let msg = num < game.secret ? 'Too low ' : 'Too high ';
+        show(msg + `(${game.attempts} left)`, 'incorrect');
     }
     
-    guessInput.value = '';
-    guessInput.focus();
+    input.value = '';
+    input.focus();
 }
 
-// Display feedback
-function showFeedback(message, type) {
-    feedbackEl.textContent = message;
-    feedbackEl.className = `feedback ${type}`;
+function show(msg, type) {
+    feedback.textContent = msg;
+    feedback.className = type;
 }
 
-// Add guess to history
-function addToHistory(guess) {
-    const item = document.createElement('div');
-    item.className = 'history-item';
-    item.textContent = guess;
-    historyEl.appendChild(item);
+function end() {
+    game.over = true;
+    input.disabled = true;
+    submit.disabled = true;
 }
 
-// End game
-function endGame() {
-    gameState.gameOver = true;
-    submitBtn.disabled = true;
-    guessInput.disabled = true;
-}
+submit.addEventListener('click', guess);
+input.addEventListener('keypress', (e) => e.key === 'Enter' && guess());
+reset.addEventListener('click', init);
 
-// Reset game
-function resetGame() {
-    initializeGame();
-    guessInput.disabled = false;
-}
-
-// Event listeners
-submitBtn.addEventListener('click', () => {
-    processGuess(guessInput.value);
-});
-
-guessInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        processGuess(guessInput.value);
-    }
-});
-
-resetBtn.addEventListener('click', resetGame);
-
-// Start game
-initializeGame();
+init();

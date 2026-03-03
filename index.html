@@ -3,56 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystery Number Game</title>
+    <title>Number Guess Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+    <div id="canvas-container"></div>
     <div class="container">
-        <header class="header">
-            <h1>🎯 Mystery Number</h1>
-            <p class="subtitle">Pick a number between 1 and 30</p>
-        </header>
-
-        <section class="game-section">
-            <div class="stats-panel">
-                <div class="stat-box">
-                    <span class="stat-label">Attempts Left</span>
-                    <span class="stat-value" id="attempts">10</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">Difficulty</span>
-                    <span class="stat-value difficulty-hard">Hard</span>
-                </div>
+        <h1>Guess the Number</h1>
+        <p>Pick 1-30, you have 10 attempts</p>
+        
+        <div class="game">
+            <div class="stats">
+                <span>Attempts: <strong id="attempts">10</strong></span>
+                <span id="feedback"></span>
             </div>
-
-            <div class="feedback-container">
-                <p class="feedback" id="feedback"></p>
+            
+            <div class="input-group">
+                <input type="number" id="guessInput" min="1" max="30" placeholder="Your guess..." autocomplete="off">
+                <button id="submitBtn">Guess</button>
             </div>
-
-            <div class="input-section">
-                <input 
-                    type="number" 
-                    id="guessInput" 
-                    class="guess-input" 
-                    min="1" 
-                    max="30" 
-                    placeholder="Enter your guess..."
-                    autocomplete="off"
-                >
-                <button class="submit-btn" id="submitBtn">Submit Guess</button>
-            </div>
-
-            <div class="history-section">
-                <h3>Previous Guesses</h3>
-                <div class="history" id="history"></div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <button class="reset-btn" id="resetBtn">New Game</button>
-        </footer>
+            
+            <div id="history"></div>
+            <button id="resetBtn" class="reset">New Game</button>
+        </div>
     </div>
 
+    <script src="three-viz.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
